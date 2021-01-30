@@ -29,7 +29,6 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         push-branch: update-data-${{steps.now.outputs.formattedTime}}
         commit-message: 'chore: Atualiza os dados com a última lista divulgada ${{steps.now.outputs.formattedTime}}'
-        rebase: 'true'
         force-add: 'true'
         files: .
         name: VacinaManaus CI
