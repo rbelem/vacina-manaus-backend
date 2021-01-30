@@ -17,12 +17,18 @@ jobs:
     - name: Process
       run: |
         make process-data
+    - name: Get current time
+      uses: 1466587594/get-current-time@v2
+      id: now
+      with:
+        format: YYYYMMDDHHmm
+        utcOffset: "-04:00"
     - name: Commit and Push
       uses: github-actions-x/commit@v2.7
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
-        push-branch: master
-        commit-message: '${{ matrix.node-version }} Atualiza os dados com a última lista divulgada'
+        push-branch: update-data-${{steps.now.outputs.formattedTime}}
+        commit-message: 'chore: Atualiza os dados com a última lista divulgada ${{steps.now.outputs.formattedTime}}'
         rebase: 'true'
         force-add: 'true'
         files: .
