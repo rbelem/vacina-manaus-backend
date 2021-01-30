@@ -23,10 +23,11 @@ jobs:
       with:
         format: YYYYMMDDHHmm
         utcOffset: "-04:00"
+    - name: Set branch name
       run: "branch_name=update-data-${{steps.now.outputs.formattedTime}}"
     - name: Checkout to branch
       run: git checkout -b $branch_name
-    - name: Commit and Push
+    - name: Commit and push
       uses: stefanzweifel/git-auto-commit-action@v4
       with:
         branch: ${{ env.branch_name }}
