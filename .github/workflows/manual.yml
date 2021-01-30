@@ -24,12 +24,7 @@ jobs:
         format: YYYYMMDDHHmm
         utcOffset: "-04:00"
     - name: Commit and Push
-      uses: github-actions-x/commit@v2.7
+      uses: stefanzweifel/git-auto-commit-action@v4
       with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        push-branch: update-data-${{steps.now.outputs.formattedTime}}
-        commit-message: 'chore: Atualiza os dados com a última lista divulgada ${{steps.now.outputs.formattedTime}}'
-        force-add: 'true'
-        files: .
-        name: VacinaManaus CI
-        email: rodrigo.belem@gmail.com
+        branch: update-data-${{steps.now.outputs.formattedTime}}
+        commit_message: 'chore: Atualiza os dados com a última lista divulgada ${{steps.now.outputs.formattedTime}}'
