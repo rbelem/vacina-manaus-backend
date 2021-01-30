@@ -26,3 +26,5 @@ jobs:
         rebase: 'true'
         force-add: 'true'
         files: .
+        name: VacinaManaus CI
+        email: rodrigo.belem@gmail.com
