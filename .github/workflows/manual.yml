@@ -25,3 +25,4 @@ jobs:
         commit-message: '${{ matrix.node-version }} Atualiza os dados com a última lista divulgada'
         rebase: 'true'
         force-add: 'true'
+        files: .
