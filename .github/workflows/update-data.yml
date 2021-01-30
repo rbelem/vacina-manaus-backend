@@ -1,0 +1,28 @@
+name: Update VacinaManaus data CI
+
+on:
+  workflow_dispatch:
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Download the latest pdf
+      run: |
+        make download-data
+    - name: Extract
+      run: |
+        make extract-data
+    - name: Process
+      run: |
+        make process-data
+    - name: Commit, Push and PR
+      uses: golfzaptw/action-commit-push-pr@1.0.2
+      with:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        PREFIX_BRANCHES: 'update-data'
+        DEFAULT_BRANCHES: 'main'
+        COMMIT_MESSAGE: 'Atualiza os dados com a última lista divulgada'
+        TITLE_PR: 'chore: Atualiza os dados com a última lista divulgada'
+        BODY_PR: ''
