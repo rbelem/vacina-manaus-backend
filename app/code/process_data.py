@@ -6,12 +6,12 @@ import pandas as pd
 MANAUS_ESTIMATED_POPULATION = 2219580
 VACCINE_TARGET = 70  # %
 
-paths = os.listdir('db')
+paths = os.listdir('app/data/cleaned')
 # Add absolute path to get information about tha last modification to max method
-_paths = list(map(lambda x: 'db/{}'.format(x), paths))
+_paths = list(map(lambda x: 'app/data/cleaned/{}'.format(x), paths))
 input = max(_paths, key=os.path.getctime)
 
-output_path = 'analytics'
+output_path = 'app/analysis'
 
 df = pd.read_json(input)
 

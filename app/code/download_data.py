@@ -19,4 +19,4 @@ soup = BeautifulSoup(response.text, "html.parser")
 for one_a_tag in soup.findAll('a'):
     link = one_a_tag['href']
     if "Vacinados" in link:
-        urllib.request.urlretrieve(link, 'raw_db/' + link.split("/")[-1])
+        urllib.request.urlretrieve(link, 'app/data/raw/' + link.split("/")[-1])

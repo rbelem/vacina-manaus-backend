@@ -5,17 +5,17 @@ import json
 import pdfplumber
 from validate_docbr import CPF
 
-paths = os.listdir('raw_db')
+paths = os.listdir('app/data/raw')
 
 # Add absolute path to get information about tha last modification to max method
-_paths = list(map(lambda x: 'raw_db/{}'.format(x), paths))
+_paths = list(map(lambda x: 'app/data/raw/{}'.format(x), paths))
 
 filename = max(_paths, key=os.path.getctime).replace(
-    'raw_db/', '').replace('.pdf', '')
+    'app/data/raw/', '').replace('.pdf', '')
 
-input_path = "raw_db/{}.pdf".format(filename)
+input_path = "app/data/raw/{}.pdf".format(filename)
 
-output_path = "db/{}.json".format(filename)
+output_path = "app/data/cleaned/{}.json".format(filename)
 
 output_file = open(output_path, 'w')
 cpf_validator = CPF()
