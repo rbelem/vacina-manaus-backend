@@ -17,12 +17,11 @@ jobs:
     - name: Process
       run: |
         make process-data
-    - name: Commit, Push and PR
-      uses: golfzaptw/action-commit-push-pr@1.0.2
+    - name: Commit and Push
+      uses: github-actions-x/commit@v2.7
       with:
-        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-        PREFIX_BRANCHES: 'update-data'
-        DEFAULT_BRANCHES: 'main'
-        COMMIT_MESSAGE: 'Atualiza os dados com a última lista divulgada'
-        TITLE_PR: 'chore: Atualiza os dados com a última lista divulgada'
-        BODY_PR: ''
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        push-branch: master
+        commit-message: '${{ matrix.node-version }} Atualiza os dados com a última lista divulgada'
+        rebase: 'true'
+        force-add: 'true'
