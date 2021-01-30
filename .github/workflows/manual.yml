@@ -24,7 +24,7 @@ jobs:
         format: YYYYMMDDHHmm
         utcOffset: "-04:00"
     - name: Set branch name
-      run: "branch_name=update-data-${{steps.now.outputs.formattedTime}}" >> $GITHUB_ENV
+      run: echo "branch_name=update-data-${{steps.now.outputs.formattedTime}}" >> $GITHUB_ENV
     - name: Checkout to branch
       run: git checkout -b ${{ env.branch_name }}
     - name: Commit and push
