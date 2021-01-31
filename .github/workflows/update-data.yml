@@ -28,8 +28,7 @@ jobs:
     - name: Create pull request
       uses: peter-evans/create-pull-request@v3
       with:
-        token: ${{ secrets.PAT }}
-        commit-message: 'chore: Atualiza os dados com a última lista divulgada ${{steps.now.outputs.formattedTime}}'
+        commit-message: 'Atualiza os dados com a última lista divulgada ${{steps.now.outputs.formattedTime}}'
         title: 'chore: Atualiza os dados com a última lista divulgada ${{steps.now.outputs.formattedTime}}'
         branch: ${{ env.branch_name }}
 
