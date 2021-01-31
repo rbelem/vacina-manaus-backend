@@ -25,13 +25,11 @@ jobs:
         utcOffset: "-04:00"
     - name: Set branch name
       run: echo "branch_name=update-data-${{steps.now.outputs.formattedTime}}" >> $GITHUB_ENV
-    - name: Checkout to branch
-      run: git checkout -b ${{ env.branch_name }}
-    - name: Commit and push
-      uses: stefanzweifel/git-auto-commit-action@v4
-      with:
-        branch: ${{ env.branch_name }}
-        commit_message: 'chore: Atualiza os dados com a última lista divulgada ${{steps.now.outputs.formattedTime}}'
     - name: Create pull request
       uses: peter-evans/create-pull-request@v3
+      with:
+        token: ${{ secrets.PAT }}
+        commit-message: 'chore: Atualiza os dados com a última lista divulgada ${{steps.now.outputs.formattedTime}}'
+        title: 'chore: Atualiza os dados com a última lista divulgada ${{steps.now.outputs.formattedTime}}'
+        branch: ${{ env.branch_name }}
 
