@@ -32,3 +32,6 @@ jobs:
       with:
         branch: ${{ env.branch_name }}
         commit_message: 'chore: Atualiza os dados com a última lista divulgada ${{steps.now.outputs.formattedTime}}'
+    - name: Create pull request
+      uses: peter-evans/create-pull-request@v3
+
