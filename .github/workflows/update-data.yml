@@ -23,12 +23,22 @@ jobs:
       with:
         format: YYYYMMDDHHmm
         utcOffset: "-04:00"
+    - name: Update analytics/last_update_date.csv
+      env:
+        DAY: ${{ steps.current-time.outputs.day }}
+        MONTH: ${{ steps.current-time.outputs.month }}
+        YEAR: ${{ steps.current-time.outputs.year }}
+      run: |
+        cat << EOF > analytics/last_update_date.csv
+        last_update_date
+        $DAY/$MONTH/$YEAR
+        EOF
     - name: Set branch name
       run: echo "branch_name=update-data-${{steps.now.outputs.formattedTime}}" >> $GITHUB_ENV
     - name: Create pull request
       uses: peter-evans/create-pull-request@v3
       with:
-        commit-message: 'Atualiza os dados com a última lista divulgada ${{steps.now.outputs.formattedTime}}'
-        title: 'chore: Atualiza os dados com a última lista divulgada ${{steps.now.outputs.formattedTime}}'
+        commit-message: 'chore: Atualiza os dados com a última lista divulgada ${{steps.now.outputs.formattedTime}}'
+        title: 'Atualiza os dados com a última lista divulgada ${{steps.now.outputs.formattedTime}}'
         branch: ${{ env.branch_name }}
 
