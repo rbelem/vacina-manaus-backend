@@ -25,9 +25,9 @@ jobs:
         utcOffset: "-04:00"
     - name: Update analytics/last_update_date.csv
       env:
-        DAY: ${{ steps.current-time.outputs.day }}
-        MONTH: ${{ steps.current-time.outputs.month }}
-        YEAR: ${{ steps.current-time.outputs.year }}
+        DAY: ${{ steps.now.outputs.day }}
+        MONTH: ${{ steps.now.outputs.month }}
+        YEAR: ${{ steps.now.outputs.year }}
       run: |
         cat << EOF > analytics/last_update_date.csv
         last_update_date
